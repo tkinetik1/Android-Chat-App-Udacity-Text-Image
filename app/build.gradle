@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    mavenLocal()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+android {
+    compileSdkVersion 27
+    //removed buildToolsVersion; It is not needed in AS 3.0+
+
+    defaultConfig {
+        applicationId "com.google.firebase.udacity.friendlychat"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+
+    compile 'com.android.support:design:27.0.2'
+    // old -     compile 'com.android.support:appcompat-v7:26.1.0' same above
+    compile 'com.android.support:appcompat-v7:27.0.2'
+
+    // Displaying images
+    compile 'com.github.bumptech.glide:glide:4.1.1'
+
+    // add firebase db dependencies
+    compile 'com.google.firebase:firebase-database:11.6.2'
+    // add firebase storage dependency
+    compile 'com.google.firebase:firebase-storage:11.6.2'
+    // add firebase auth dependency
+    compile 'com.google.firebase:firebase-auth:11.6.2'
+    // add firebase UI auth dependency
+    compile 'com.firebaseui:firebase-ui-auth:3.1.0'
+    // add firebase messaging and notifications dependency
+    compile 'com.google.firebase:firebase-messaging:11.6.2'
+    // add remote-config firebase dependency
+    compile 'com.google.firebase:firebase-config:11.6.2'
+    // add new sdk 27 cardView dependency
+    compile 'com.android.support:cardview-v7:27.0.2'
+    // add new sdk 27 customtabs dependency
+    compile 'com.android.support:customtabs:27.0.2'
+    // add gms-auth:11.6.2(latest version)
+    compile 'com.google.android.gms:play-services-auth:11.6.2'
+
+
+}
+
+//App-level google-services dependency initialize for firebase & json file
+apply plugin: 'com.google.gms.google-services'
